@@ -1,0 +1,9 @@
+
+.vscode/
+venv/
+build/
+oth/
+Crypting_file.spec
+Crypting_file.exe
+Win64OpenSSL_Light-3_0_7.msi
+
