@@ -37,11 +37,6 @@ frame1.grid_columnconfigure(0, weight=1)
 frame2.grid_columnconfigure(0, weight=1)
 
 
-def enable(children):
-    for child in children:
-        child.configure(state='enable')
-
-
 def load_encryption():
     global FILE_NAME
     FILE_NAME = fd.askopenfilename(title='Choose a file',
