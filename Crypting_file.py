@@ -1,11 +1,11 @@
 import os
 import subprocess
 import sys
-from tkinter import *
-from tkinter import ttk
+import tkinter
+from tkinter import END, ttk
 from tkinter import filedialog as fd
 
-root = Tk()
+root = tkinter.Tk()
 root.title("Crypting file")
 
 # center window
@@ -25,11 +25,11 @@ FILE_NAME = 'Set file to crypt'
 LEN_PASS = 64
 
 # Creates top frame
-frame1 = LabelFrame(root, width=500, height=280, bd=5)
+frame1 = tkinter.LabelFrame(root, width=500, height=280, bd=5)
 frame1.grid(sticky="WE")
 
 # Creates bottom frame
-frame2 = LabelFrame(root, width=500, height=20, bd=0)
+frame2 = tkinter.LabelFrame(root, width=500, height=20, bd=0)
 frame2.grid(sticky="WE")
 
 root.grid_columnconfigure(0, weight=1)
@@ -73,7 +73,7 @@ def encrypt():
         print(value)
         subprocess.call(value)
         for child in frame1.winfo_children():
-            child.configure(state='disable')
+            child.configure(state='disable')# type: ignore
         but_done.grid(row=5, column=0, sticky="WE", pady=2)
     except ValueError:
         pass
@@ -89,16 +89,16 @@ def decrypts():
         print(value)
         subprocess.call(value)
         for child in frame1.winfo_children():
-            child.configure(state='disable')
+            child.configure(state='disable')# type: ignore
         but_done.grid(row=5, column=0, sticky="WE", pady=2)
     except ValueError:
         pass
 
 
 def set_len_newpass():
-    pass_entry = Entry(frame1)
-    pass_entry.insert(END, LEN_PASS)
-    but_set_len = Button(
+    pass_entry = ttk.Entry(frame1)
+    pass_entry.insert(END, LEN_PASS)# type: ignore
+    but_set_len = tkinter.Button(
         frame1, text="Ok", command=lambda: create_newpass(pass_entry.get()))
     pass_entry.grid(row=6, column=0, sticky="W", pady=2)
     but_set_len.grid(row=6, column=0, sticky="E", pady=2)
@@ -110,7 +110,7 @@ def create_newpass(LEN_PASS):
         value = 'create_pass.bat ' + pname+' ' + str(LEN_PASS)
         subprocess.call(value)
         for child in frame1.winfo_children():
-            child.configure(state='disable')
+            child.configure(state='disable')# type: ignore
         but_done.grid(row=7, column=0, sticky="WE", pady=2)
     except ValueError:
         pass
@@ -120,21 +120,21 @@ def reload_script():
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-but_File_to_Crypt = Button(
+but_File_to_Crypt = tkinter.Button(
     frame1, text="File to Crypt",  command=load_encryption)
-but_File_to_Decrypts = Button(
+but_File_to_Decrypts = tkinter.Button(
     frame1, text="File to Decrypts", command=load_decryption)
-but_Create_Pass = Button(
+but_Create_Pass = tkinter.Button(
     frame1, text="Create new pass", command=set_len_newpass)
 
 but_File_to_Crypt.grid(row=0, column=0, sticky="WE", pady=2)
 but_File_to_Decrypts.grid(row=1, column=0, sticky="WE", pady=2)
 
 
-but_Crypt = Button(frame1, text="Crypt", command=encrypt)
-but_Decrypts = Button(frame1, text="Decrypts", command=decrypts)
+but_Crypt = tkinter.Button(frame1, text="Crypt", command=encrypt)
+but_Decrypts = tkinter.Button(frame1, text="Decrypts", command=decrypts)
 
-but_done = Button(frame2, text="Done!", bg="#449B32",
+but_done = tkinter.Button(frame2, text="Done!", bg="#449B32",
                   fg="#fff", command=reload_script)
 
 root.mainloop()
