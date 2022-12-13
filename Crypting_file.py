@@ -125,9 +125,9 @@ def reload_script():
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-but_File_to_Crypt = ttk.Button(
+but_File_to_Crypt = Button(
     frame1, text="File to Crypt",  command=load_encryption)
-but_File_to_Decrypts = ttk.Button(
+but_File_to_Decrypts = Button(
     frame1, text="File to Decrypts", command=load_decryption)
 but_Create_Pass = Button(
     frame1, text="Create new pass", command=set_len_newpass)
@@ -136,8 +136,8 @@ but_File_to_Crypt.grid(row=0, column=0, sticky="WE", pady=2)
 but_File_to_Decrypts.grid(row=1, column=0, sticky="WE", pady=2)
 
 
-but_Crypt = ttk.Button(frame1, text="Crypt", command=encrypt)
-but_Decrypts = ttk.Button(frame1, text="Decrypts", command=decrypts)
+but_Crypt = Button(frame1, text="Crypt", command=encrypt)
+but_Decrypts = Button(frame1, text="Decrypts", command=decrypts)
 
 but_done = Button(frame2, text="Done!", bg="#449B32",
                   fg="#fff", command=reload_script)
